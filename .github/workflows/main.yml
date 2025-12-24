@@ -1,30 +1,36 @@
-name: Deploy Hugo to GitHub Pages
+name: Build and Deploy Hugo Site
 
 on:
   push:
-    branches: [main] # 当推送到main分支时触发
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 需要写入权限来推送gh-pages分支
+    
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # 获取全部历史，以便Hugo正确计算最近文章等
+          submodules: true
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest' # 或指定你的Hugo版本，如 '0.108.0'[citation:9]
-          extended: true # 大部分主题需要extended版本
+          hugo-version: '0.91.2'
+          extended: true
 
-      - name: Build
-        run: hugo --minify # 构建网站并压缩输出文件
+      - name: Build with Hugo
+        run: hugo --minify -b https://mkbooks.github.io/blog/
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }} # 使用内置令牌
-          publish_dir: ./public # 上传Hugo生成的public文件夹
-          publish_branch: gh-pages # 部署到gh-pages分支
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          commit_message: ${{ github.event.head_commit.message }}
