@@ -1,13 +1,5 @@
 ---
-title: About
-description: Hugo, the world's fastest framework for building websites
-date: '2019-02-28'
-aliases:
-  - about-us
-  - about-hugo
-  - contact
-license: CC BY-NC-ND
-lastmod: '2020-10-09'
+title: 关于
 menu:
     main: 
         weight: -90
@@ -16,20 +8,56 @@ menu:
             icon: user
 ---
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+# 常香玉-前端开发工程师
+- 手机: 17111124608
+- 邮箱: changxiangyu888@gmail.com　
+- 毕业院校及专业: 黑河学院本科20届-计算机科学与技术专业
+- 我的博客: https://changxiangyu.cn
 
-Hugo makes use of a variety of open source projects including:
+## 个人能力
+- 编程语言: HTML、CSS、JavaScript、Typescript、HTML5、CSS3、DOM、BOM、ES6、JQuery、dart、python、Java，Ajax。
+- 开发框架: Angular、Ionic、flutter、Vue、Avue、template、Node.js、Flask、MVC、uniapp，qiankun。
+- 第三方开发: 微信小程序、企业微信，支付宝。
+- 可视化: PS、OpenLayers，ECharts。
+- 数据库: Redis、MySQL、MongoDB。
+- 相关知识: HTTP协议、浏览器工作原理。
+- 团队协作: Git、GitHub、GitLab。
+- 能够独立从0到1搭建前端项目。
 
-* https://github.com/yuin/goldmark
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
+## 工作经历
+### 工作经历（2）
+- 工作时间: 2021年3月至今
+- 工作公司: 达实智能
+- 部门岗位: 研发部-软件研发工程师
+#### 项目经验
+- 项目名称：改单项目（群创光电、报业大厦、晶科、深圳中学、邦普，江西工行支付等项目）
+- 项目描述：根据需求实现小程序支付、h5支付、微信支付、支付宝支付，银行支付功能。支持小程序、企业微信、微信客户端运行。功能有登录注册、充值、消费二维码、消费数据查询、人脸采集、个人中心、挂失解挂、考勤签到（地图显示）、签到记录查询、访客邀约、邀约记录查询、二维码开门、远程开门，门禁记录等
+- 我的职责：负责整个改单的建立、开发、h5的改单使用nginx部署项目，小程序的需审核发布，企业微信的项目使用测试企业微信部署测试，以及后期的维护。
+- 开发技术：移动端上的项目使用uniapp、原生代码（三件套），pc端的项目使用vue、angular。
 
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
+### 工作经历（1）
+- 工作时间: 2020年3月至2021年3月
+- 工作公司: 中联智科高新技术有限公司
+- 部门岗位: 研发部-前端开发
+#### 项目经验
+- 项目名称：智慧鱼池
+- 项目描述：主要功能实时监控，日志管理，多租户管理，养鱼设备的管理，消息管理，ERP（进销存）管理。
+- 我的职责：建立移动端模型，移动端主要开发登录模块，日志模块（鱼的出塘、转塘，投苗、打样、投食、损耗、投药等），我的模块。对移动端的升级和维护。PC端的构建，PC端主要开发ERP（进销存）管理，日志管理，消息管理，系统管理。
+- 开发技术：移动端使用Angular、Ionic，pc端使用Vue、Avue，element开发。
 
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
+- 项目名称：智慧畜牧
+- 业务描述：主要功能有对牲畜的实时监控，颈圈的佩戴，电子围栏，地图，消息管理，牛脸识别，入栏数数，日志管理和设备管理。实现散养和圈养两种模式。
+- 我的职责：开发散养模块，开发实现摄像头，颈圈的安装，拆卸，转换，查看。牲畜管理，牲畜跨越电子围栏实时定位牲畜位置。
+- 开发技术：移动端使用Angular、Ionic，pc端使用Vue、Avue，element开发。
 
-Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
+### 实习经历（0）
+- 工作时间: 2019年10月至2020年1月
+- 工作公司: 析研科技有限公司
+- 部门岗位: 开发部-前端开发工程师
+#### 项目经验
+- 项目名称：香港补习教育系统
+- 项目描述：该项目属于线上补习教育类，基于多语言处理的前后端分离开发，前端框架使用Vue，后端框架使用spring  boot，支持Web端和手机端线上服务。有学生端和教师端，主要功能模块有时间表、上堂、配对、笔记、我的等。上堂以实时直播的形式实现，根据个人信息级、筛选条件和课程安排选择配对。
+- 我的职责：对接数据接口，封装函数处理数据库中的json数据，展示到页面。根据UI 设计的项目设计稿，使用Element中的组件，编写代码实现页面展示。测试前端功能和前端与后端数据接口的实现。
 
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+## 在校获得奖励
+- 优秀学生二等奖学金、三等奖学金
