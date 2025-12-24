@@ -25,7 +25,7 @@ jobs:
           extended: true
 
       - name: Build with Hugo
-        run: hugo --minify -b https://xinhuizhineng.github.io/
+        run: hugo --minify -b https://xinhuizhineng.github.io/blog/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
