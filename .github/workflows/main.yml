@@ -27,8 +27,20 @@ jobs:
       - name: Build with Hugo
         run: hugo --minify --baseURL https://xinhuizhineng.github.io/blog/  
 
-      - name: List generated image files
-        run: ls -R public/images
+      # 4️⃣ 检测图片是否生成
+      - name: Check generated images
+        run: |
+          echo "📂 检查 public/images 目录内容..."
+          if [ -d "public/images" ]; then
+            ls -R public/images
+            if [ -z "$(ls -A public/images)" ]; then
+              echo "❌ 构建完成但 public/images 目录为空，请检查 static/images 是否有文件"
+              exit 1
+            fi
+          else
+            echo "❌ 构建完成但 public/images 目录不存在，请检查图片路径"
+            exit 1
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
