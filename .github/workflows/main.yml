@@ -25,7 +25,10 @@ jobs:
           extended: true
 
       - name: Build with Hugo
-        run: hugo --minify --baseURL https://xinhuizhineng.github.io/blog/
+        run: hugo --minify --baseURL https://xinhuizhineng.github.io/blog/  
+
+      - name: List generated files
+        run: ls -R public/images
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
