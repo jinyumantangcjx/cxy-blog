@@ -18,4 +18,4 @@ categories : [              # 文章所属标签
 
 - 从输入 URL 到页面展示完整流程示意图
 
-![从输入 URL 到页面展示完整流程示意图](/images/browser.jpg)
+![从输入 URL 到页面展示完整流程示意图](./images/browser.jpg)
