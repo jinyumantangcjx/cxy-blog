@@ -18,7 +18,7 @@ categories : [              # 文章所属标签
 
 - 从输入 URL 到页面展示完整流程示意图
 
-![从输入 URL 到页面展示完整流程示意图](/images/browser-principles-and-practice/browser.jpg)  
+![从输入 URL 到页面展示完整流程示意图](images/browser-principles-and-practice/browser.jpg)  
 
 - 浏览器进程主要负责用户交互、子进程管理和文件储存等功能。
 - 网络进程是面向渲染进程和浏览器进程等提供网络下载功能。
