@@ -27,7 +27,7 @@ jobs:
       - name: Build with Hugo
         run: hugo --minify --baseURL https://xinhuizhineng.github.io/blog/  
 
-      - name: List generated files
+      - name: List generated image files
         run: ls -R public/images
 
       - name: Deploy to GitHub Pages
