@@ -1,12 +1,12 @@
 ---
-title: "从输入 URL 到页面展示"
+title: "导航流程"
 author: "常香玉"
-description : "从输入 URL 到页面展示"
+description : "导航流程"
 date: 2023-01-30T13:05:18+08:00
 lastmod: 2023-01-30
 tags : [
     "浏览器工作原理与实践",
-    "从输入 URL 到页面展示"
+    "导航流程"
 ]
 categories : [
     "浏览器工作原理与实践",
