@@ -20,16 +20,14 @@ menu:
 - 我的博客: https://github.com/xinhuizhineng/blog
 
 ## 核心技能
-- 编程语言: HTML、CSS、JavaScript、Typescript、HTML5、CSS3、DOM、BOM、ES6、JQuery、dart、python、Java、Ajax，数据结构与算法。
-- 开发框架: Vue、Avue、Angular、uniapp、Node.js、Ionic、flutter/Dart、qiankun、template、Flask、MVC，amis。
-- 第三方开发: 微信小程序/公众号、企业微信，支付宝。
-- 可视化: 高德地图、PS、OpenLayers，ECharts。
-- 后端：Python、Java。
-- 数据库: Redis、SQL、MySQL、MongoDB。
+- 编程语言： JavaScript (ES6+), TypeScript, Dart, Python, Java, HTML5, CSS3
+- 前端框架： Vue.js (Avue), Angular, qiankun (微前端), Ionic, amis
+- 移动/小程序： uni-app, Flutter, 微信小程序/公众号, 企业微信/支付宝对接
+- 后端技术： Node.js, Flask, MVC 架构
+- 数据库： MySQL, Redis, MongoDB, SQL
+- 可视化/GIS： ECharts, OpenLayers, 高德地图 API, Photoshop (切图/处理)
+- 工具/运维： Git/GitHub/GitLab, Nginx, IIS, npm/yarn
 - 相关知识: HTTP协议、浏览器工作原理。
-- 团队协作: Git、GitHub、GitLab。
-- 工具：npm、yarn、Photoshop。
-- 部署运维：Nginx、IIS、URL Rewrite
 - 能够独立从0到1搭建前端项目。
 
 ---
