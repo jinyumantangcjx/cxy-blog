@@ -17,7 +17,7 @@ menu:
 - GitHub 主页：https://github.com/changxiangyu666
 - 作品组织：https://github.com/jinyumantangcjx，https://github.com/xinhuizhineng
 - 毕业院校及专业：黑河学院 | 20届 | 计算机科学与技术专业（本科）
-- 我的博客: https://github.com/xinhuizhineng/blog/
+- 我的博客: https://xinhuizhineng.github.io/blog/
 
 ## 核心技能
 - 编程语言： JavaScript (ES6+), TypeScript, Dart, Python, Java, HTML5, CSS3
