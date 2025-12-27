@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on 我的空间</title><link>https://xinhuizhineng.github.io/blog/page/</link><description>Recent content in Pages on 我的空间</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xinhuizhineng.github.io/blog/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Archives</title><link>https://xinhuizhineng.github.io/blog/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://xinhuizhineng.github.io/blog/archives/</guid><description/></item><item><title>Links</title><link>https://xinhuizhineng.github.io/blog/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://xinhuizhineng.github.io/blog/links/</guid><description/></item><item><title>Search</title><link>https://xinhuizhineng.github.io/blog/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://xinhuizhineng.github.io/blog/search/</guid><description/></item><item><title>关于</title><link>https://xinhuizhineng.github.io/blog/%E5%85%B3%E4%BA%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://xinhuizhineng.github.io/blog/%E5%85%B3%E4%BA%8E/</guid><description>&lt;h1 id="常香玉--前端开发工程师--6-年">常香玉 | 前端开发工程师 | 6 年+&lt;/h1>
+&lt;h2 id="基本信息">基本信息&lt;/h2>
+&lt;ul>
+&lt;li>手机：17111124608&lt;/li>
+&lt;li>邮箱：changxiangyu888@gmail.com&lt;/li>
+&lt;li>GitHub 主页：https://github.com/changxiangyu666&lt;/li>
+&lt;li>作品组织：https://github.com/jinyumantangcjx，https://github.com/xinhuizhineng&lt;/li>
+&lt;li>毕业院校及专业：黑河学院 | 20届 | 计算机科学与技术专业（本科）&lt;/li>
+&lt;li>我的博客: &lt;a class="link" href="https://xinhuizhineng.github.io/blog/" target="_blank" rel="noopener"
+>https://xinhuizhineng.github.io/blog/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="核心技能">核心技能&lt;/h2>
+&lt;ul>
+&lt;li>编程语言： JavaScript (ES6+), TypeScript, Dart, Python, Java, HTML5, CSS3&lt;/li>
+&lt;li>前端框架： Vue.js (Avue), Angular, qiankun (微前端), Ionic, amis&lt;/li>
+&lt;li>移动/小程序： uni-app, Flutter, 微信小程序/公众号, 企业微信/支付宝对接&lt;/li>
+&lt;li>后端技术： Node.js, Flask, MVC 架构&lt;/li>
+&lt;li>数据库： MySQL, Redis, MongoDB, SQL&lt;/li>
+&lt;li>可视化/GIS： ECharts, OpenLayers, 高德地图 API, Photoshop (切图/处理)&lt;/li>
+&lt;li>工具/运维： Git/GitHub/GitLab, Nginx, IIS, npm/yarn&lt;/li>
+&lt;li>相关知识: HTTP协议、浏览器工作原理。&lt;/li>
+&lt;li>能够独立从0到1搭建前端项目。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="工作经历">工作经历&lt;/h2>
+&lt;h3 id="达实集团--达实物联网--研发部-前端工程师">达实集团 / 达实物联网 | 研发部-前端工程师&lt;/h3>
+&lt;p>&lt;em>2021.03 - 至今&lt;/em>&lt;/p>
+&lt;h4 id="改单类项目">&lt;strong>改单类项目&lt;/strong>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>技术栈&lt;/strong>：HTML5、CSS3、JavaScript、gulp 构建工具、uniapp（跨平台框架）、Vue、Angular、Axios（接口请求）、ES6、Promise 异步处理、WebSocket&lt;/li>
+&lt;li>&lt;strong>功能模块&lt;/strong>：
+&lt;ul>
+&lt;li>支付系统：微信 H5、小程序、支付宝、银行卡支付&lt;/li>
+&lt;li>考勤系统：基于高德地图定位签到&lt;/li>
+&lt;li>访客与梯控：访客预约、梯控权限管理&lt;/li>
+&lt;li>&lt;strong>人脸识别门禁&lt;/strong>：支持用户通过移动端上传/拍摄人脸照片 → 后端提取人脸特征并存储 → 门禁设备调用人脸识别算法实时比对 → 验证通过后自动开门&lt;/li>
+&lt;li>数据大屏：自适应布局，实时展示数据&lt;/li>
+&lt;li>C3v8 访客机：硬件设备数据交互与界面展示&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>性能优化&lt;/strong>：
+&lt;ul>
+&lt;li>接口统一封装，支持异常处理与重试&lt;/li>
+&lt;li>上传人脸照片时进行图片压缩与格式校验，控制文件大小 ≤ 500KB，减少网络延迟&lt;/li>
+&lt;li>识别算法调用优化，准确率提升至 98%+，平均响应时间 &amp;lt; 1.5 秒&lt;/li>
+&lt;li>资源文件按需加载，减少首屏时间&lt;/li>
+&lt;li>前端缓存策略减少重复请求&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>部署与适配&lt;/strong>：
+&lt;ul>
+&lt;li>适配 iOS / Android ，微信小程序，微信公众号，企业微信，h5 嵌入 app 应用等多终端&lt;/li>
+&lt;li>配置微信/企业微信平台接口权限&lt;/li>
+&lt;li>部署至 Nginx 与 IIS，确保多终端运行稳定&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>成果&lt;/strong>：
+&lt;ul>
+&lt;li>负责整个改单的建立、开发、h5的改单使用nginx部署项目，小程序的需审核发布，企业微信的项目使用测试企业微信部署测试，以及后期的维护&lt;/li>
+&lt;li>独立完成页面开发与数据接口对接&lt;/li>
+&lt;li>项目跨终端正常运行，支付与考勤模块稳定性提升&lt;/li>
+&lt;li>系统部署效率提升&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="pc-端内部管理平台">&lt;strong>PC 端内部管理平台&lt;/strong>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>技术栈&lt;/strong>：Vue、Angular、qiankun 微前端框架、Node.js、Element UI&lt;/li>
+&lt;li>&lt;strong>功能模块&lt;/strong>：
+&lt;ul>
+&lt;li>DAS-MP 内部管理平台，C3-Plus OM 运管平台，C3-Plus SaaS 系统维护&lt;/li>
+&lt;li>C3-Plus 运管平台（消费、考勤、门禁监控、设备服务、主应用等子系统）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>性能优化&lt;/strong>：
+&lt;ul>
+&lt;li>微前端架构优化，支持多系统无缝集成&lt;/li>
+&lt;li>图表数据懒加载，减少渲染压力&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>部署与适配&lt;/strong>：
+&lt;ul>
+&lt;li>跨浏览器兼容（Chrome、IE11）&lt;/li>
+&lt;li>模块按需加载，降低首屏压力&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>成果&lt;/strong>：
+&lt;ul>
+&lt;li>构建DAS-MP 内部管理平台，C3-Plus OM 运管平台和C3-Plus SaaS 系统维护，负责主要开发和维护&lt;/li>
+&lt;li>C3-Plus 运管平台参与消费、考勤、门禁监控、设备服务、主应用等子系统开发&lt;/li>
+&lt;li>提升多系统协作效率&lt;/li>
+&lt;li>前端性能提升&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="移动端-c3-plus-应用">&lt;strong>移动端 C3-Plus 应用&lt;/strong>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>技术栈&lt;/strong>：uniapp、uView UI 框架、Vuex、Axios、ES6、Promise&lt;/li>
+&lt;li>&lt;strong>功能模块&lt;/strong>：
+&lt;ul>
+&lt;li>登录/注册（微信授权登录、Token 鉴权）&lt;/li>
+&lt;li>主页（信息总览、快捷入口）&lt;/li>
+&lt;li>我的（个人信息管理、消息通知）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>性能优化&lt;/strong>：
+&lt;ul>
+&lt;li>使用 Vuex 管理全局状态，减少数据冗余&lt;/li>
+&lt;li>图片资源按需加载，首页加载速度提升&lt;/li>
+&lt;li>接口请求统一封装，支持错误处理与重试机制&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>部署与适配&lt;/strong>：
+&lt;ul>
+&lt;li>适配 iOS / Android 与微信小程序&lt;/li>
+&lt;li>按需引入组件，减少包体积&lt;/li>
+&lt;li>Flex 布局与媒体查询实现多屏幕适配&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>成果&lt;/strong>：
+&lt;ul>
+&lt;li>提升移动端用户操作流畅度&lt;/li>
+&lt;li>统一 UI 风格，降低维护成本&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="中联智科高新技术有限公司--研发部-前端开发">中联智科高新技术有限公司 | 研发部-前端开发&lt;/h3>
+&lt;p>&lt;em>2020.03 - 2021.03&lt;/em>&lt;/p>
+&lt;h4 id="智慧鱼池">&lt;strong>智慧鱼池&lt;/strong>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>技术栈&lt;/strong>：Angular、Ionic（移动端）、Vue、Avue、Element UI、OpenLayers 地图&lt;/li>
+&lt;li>&lt;strong>功能模块&lt;/strong>：实时监控鱼池环境，日志管理与多租户支持，养鱼设备管理与消息通知，ERP 系统集成&lt;/li>
+&lt;li>&lt;strong>性能优化&lt;/strong>：地图数据分层加载，表格分页与虚拟滚动优化&lt;/li>
+&lt;li>&lt;strong>部署与适配&lt;/strong>：移动端与 PC 端双平台适配，组件按需加载，减少资源占用&lt;/li>
+&lt;li>&lt;strong>成果&lt;/strong>：建立移动端模型和PC端的构建，移动端与 PC 端功能稳定运行，数据可视化响应速度提升&lt;/li>
+&lt;/ul>
+&lt;h4 id="智慧畜牧">&lt;strong>智慧畜牧&lt;/strong>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>技术栈&lt;/strong>：Angular、Ionic（移动端）、Vue、Avue、Element UI、OpenLayers 地图&lt;/li>
+&lt;li>&lt;strong>功能模块&lt;/strong>：牲畜实时监控，颈圈佩戴与电子围栏管理，地图定位与轨迹回放，牛脸识别与日志管理，消息管理，入栏数数和设备管理。&lt;/li>
+&lt;li>&lt;strong>性能优化&lt;/strong>：实时定位数据压缩传输，图片识别接口并发优化&lt;/li>
+&lt;li>&lt;strong>部署与适配&lt;/strong>：移动端与 PC 双平台支持&lt;/li>
+&lt;li>&lt;strong>成果&lt;/strong>：实现散养与圈养模式切换，数据传输稳定性提升，实现摄像头，颈圈的安装，拆卸，转换，查看。牲畜管理，牲畜跨越电子围栏实时定位牲畜位置。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="析研科技有限公司实习--开发部-前端开发工程师">析研科技有限公司（实习） | 开发部-前端开发工程师&lt;/h3>
+&lt;p>&lt;em>2019.10 - 2020.01&lt;/em>&lt;/p>
+&lt;h4 id="香港补习教育系统">&lt;strong>香港补习教育系统&lt;/strong>&lt;/h4>
+&lt;ul>
+&lt;li>技术栈：Vue、Spring Boot、Element UI、WebSocket&lt;/li>
+&lt;li>项目描述：该项目属于线上补习教育类，基于多语言处理的前后端分离开发，支持Web端和手机端线上服务。有学生端和教师端。上堂以实时直播的形式实现，根据个人信息级、筛选条件和课程安排选择配对。&lt;/li>
+&lt;li>功能模块：时间表管理、课程配对、我的，笔记管理与上堂等。&lt;/li>
+&lt;li>性能优化：WebSocket 保持低延迟实时通信，界面组件按需加载&lt;/li>
+&lt;li>部署与适配：跨浏览器兼容&lt;/li>
+&lt;li>成果：完成核心交互逻辑与数据渲染，提升直播课程稳定性。对接数据接口，封装函数处理数据库中的json数据，展示到页面。根据UI 设计的项目设计稿，使用Element中的组件，编写代码实现页面展示。测试前端功能和前端与后端数据接口的实现。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="项目经验毕业设计">项目经验（毕业设计）&lt;/h2>
+&lt;p>&lt;strong>图片分享网站 | 独立开发&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>类似 Instagram，支持注册登录、上传图片、评论、点赞&lt;/li>
+&lt;li>七牛云图片存储与处理，腾讯云服务器，百度云数据库&lt;/li>
+&lt;li>图片懒加载、MD5+Salt 密码加密、响应式图片缩放&lt;/li>
+&lt;li>项目地址：https://github.com/changxiangyu666/PycharmProjects&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="荣誉奖项">荣誉奖项&lt;/h2>
+&lt;ul>
+&lt;li>优秀学生二等奖学金&lt;/li>
+&lt;li>优秀学生三等奖学金&lt;/li>
+&lt;/ul></description></item></channel></rss>

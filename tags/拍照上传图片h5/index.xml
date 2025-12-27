@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>拍照上传图片h5 on 我的空间</title><link>https://xinhuizhineng.github.io/blog/tags/%E6%8B%8D%E7%85%A7%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87h5/</link><description>Recent content in 拍照上传图片h5 on 我的空间</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 30 Dec 2022 13:05:18 +0800</lastBuildDate><atom:link href="https://xinhuizhineng.github.io/blog/tags/%E6%8B%8D%E7%85%A7%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87h5/index.xml" rel="self" type="application/rss+xml"/><item><title>uniapp拍照上传图片h5</title><link>https://xinhuizhineng.github.io/blog/p/uniapp%E6%8B%8D%E7%85%A7%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87h5/</link><pubDate>Fri, 30 Dec 2022 13:05:18 +0800</pubDate><guid>https://xinhuizhineng.github.io/blog/p/uniapp%E6%8B%8D%E7%85%A7%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87h5/</guid><description>&lt;h1 id="step-1-界面代码实现">Step 1: 界面代码实现&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;template&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;view class=&amp;#34;body&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;view class=&amp;#34;btn&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;view class=&amp;#34;picture-img&amp;#34; ref=&amp;#34;uploadContent&amp;#34; id=&amp;#34;uploadContent&amp;#34; @click=&amp;#34;takePhotos()&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;div class=&amp;#34;loader-19&amp;#34; v-if=&amp;#34;loader&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;点击修改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/view&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/view&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/view&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/template&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="step-2-使用到的方法">Step 2: 使用到的方法&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;span class="lnt">90
+&lt;/span>&lt;span class="lnt">91
+&lt;/span>&lt;span class="lnt">92
+&lt;/span>&lt;span class="lnt">93
+&lt;/span>&lt;span class="lnt">94
+&lt;/span>&lt;span class="lnt">95
+&lt;/span>&lt;span class="lnt">96
+&lt;/span>&lt;span class="lnt">97
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">takePhotos() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const _that = this;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (document.getElementById(&amp;#34;take-picture&amp;#34;) == null) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> let input = _that.createInputAndSetAttribute();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.$refs.uploadContent.$el.appendChild(input);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.onchange = async (event) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.loader = true;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var files = event.target.files
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (files &amp;amp;&amp;amp; files.length &amp;gt; 0) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const file = files[0];
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 压缩图片需要的一些元素和对象
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var reader = new FileReader(),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> img = new Image();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 缩放图片需要的canvas
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var canvas = document.createElement(&amp;#39;canvas&amp;#39;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var context = canvas.getContext(&amp;#39;2d&amp;#39;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // base64地址图片加载完毕后
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> img.onload = function() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 图片原始尺寸
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var originWidth = this.width;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var originHeight = this.height;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 最大尺寸限制
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var maxWidth = 960,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> maxHeight = 1280;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 目标尺寸
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var targetWidth = originWidth,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> targetHeight = originHeight;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 图片尺寸超过400x400的限制
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (originWidth &amp;gt; maxWidth || originHeight &amp;gt; maxHeight) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (originWidth / originHeight &amp;gt; maxWidth / maxHeight) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 更宽，按照宽度限定尺寸
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> targetWidth = maxWidth;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> } else {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> targetHeight = maxHeight;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // canvas对图片进行缩放
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> canvas.width = targetWidth;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> canvas.height = targetHeight;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 清除画布
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> context.clearRect(0, 0, targetWidth, targetHeight);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 图片压缩
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> context.drawImage(img, 0, 0, targetWidth, targetHeight);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // canvas转为blob并上传
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> canvas.toBlob(async (blob) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const newFile = new File([blob], &amp;#39;123.jpg&amp;#39;, {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> type: blob.type
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> })
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const imgPath = await upload(newFile, file.path, `/qy/photo`)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const detectionRes = await detection(imgPath)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> await editFacePhoto(detectionRes).then(res =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (res.code === 0) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.photoSrc = res.imgUrl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.$u.toast(&amp;#34;上传成功！&amp;#34;, 2000)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> } else {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.$u.toast(res.msg, 3000)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> })
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.loader = false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> _that.removeDocument()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }, file.type || &amp;#39;image/png&amp;#39;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> };
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 文件base64化，以便获知图片原始尺寸
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> reader.onload = function(e) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> img.src = e.target.result;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> };
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> reader.readAsDataURL(file);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> document.querySelector(&amp;#34;#take-picture&amp;#34;).click();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">// 创建input并设置input的属性
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">createInputAndSetAttribute() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> var input = document.createElement(&amp;#39;input&amp;#39;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.type = &amp;#39;file&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.id = &amp;#39;take-picture&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.accept = &amp;#39;image/*&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // input.capture = &amp;#39;user&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.style.opacity = 0;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.style.position = &amp;#39;absolute&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.style.top = 0;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.style.left = 0;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.style.width = &amp;#39;50px&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> input.style.height = &amp;#39;50px&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return input;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">// 移除input节点
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">removeDocument() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const uploadContent = document.getElementById(&amp;#34;uploadContent&amp;#34;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> const takePicture = document.getElementById(&amp;#34;take-picture&amp;#34;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uploadContent.removeChild(takePicture);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可参考： &lt;a class="link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file" target="_blank" rel="noopener"
+>https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file&lt;/a>&lt;/p></description></item></channel></rss>
