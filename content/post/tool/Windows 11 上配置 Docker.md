@@ -12,81 +12,86 @@ categories : [              # 文章所属标签
 ]
 ---
 
-一、系统要求与准备
-1. 系统要求
-Windows 11 64位：家庭版/专业版/企业版
+# 一、系统要求与准备
 
-必须启用硬件虚拟化（BIOS/UEFI中开启Intel VT-x/AMD-V）
+## 1. 系统要求
 
-WSL 2 需要 Windows 10 版本 1903 或更高（Windows 11 已内置）
+- **操作系统**：Windows 11 64 位（家庭版 / 专业版 / 企业版）
+- **虚拟化**：必须启用硬件虚拟化（BIOS/UEFI 中开启 Intel VT-x / AMD-V）
+- **WSL 2 要求**：Windows 10 版本 1903 或更高（Windows 11 已内置）
+- **内存**：至少 4 GB（建议 8 GB 以上）
+- **存储空间**：至少 20 GB 可用空间
 
-至少 4GB RAM（建议8GB以上）
-
-存储空间：至少 20GB 可用空间
-
-2. 检查虚拟化是否开启
-powershell
+## 2. 检查虚拟化是否开启
+```
 # 打开 PowerShell（管理员）
 systeminfo
+```
 
 # 或使用任务管理器查看
 # Ctrl+Shift+Esc → 性能 → CPU → "虚拟化: 已启用"
 如果未启用，需要重启进入 BIOS/UEFI 开启：
 
-Intel CPU：开启 Intel Virtualization Technology (VT-x)
+- Intel CPU：开启 `Intel Virtualization Technology (VT-x)`
 
-AMD CPU：开启 AMD-V
+- AMD CPU：开启 `AMD-V`
 
-二、安装 Docker Desktop for Windows
-方法1：官方安装（推荐）
+# 二、安装 Docker Desktop for Windows
+## 方法1：官方安装（推荐）
 下载 Docker Desktop
 
-powershell
+```
 # 官方下载地址（最新稳定版）
 https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+```
 运行安装程序
 
-双击安装文件
+1. 双击安装文件
 
-勾选 "Use WSL 2 instead of Hyper-V"（推荐）
+2. 勾选 "Use WSL 2 instead of Hyper-V"（推荐）
 
-安装完成后不要立即启动
+3. 安装完成后不要立即启动
 
 启用 WSL 2 功能
 
-powershell
+```
 # 以管理员身份打开 PowerShell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 # 重启电脑
 shutdown /r /t 0
+```
 设置 WSL 2 为默认版本
 
-powershell
+```
 wsl --set-default-version 2
+```
 方法2：使用 Winget 安装
-powershell
+```
 # 搜索 Docker Desktop
 winget search Docker.Desktop
 
 # 安装
 winget install Docker.DockerDesktop
-三、安装后的配置
-1. 首次启动配置
+```
+
+# 三、安装后的配置
+## 1. 首次启动配置
 启动 Docker Desktop
 
-接受服务条款
+- 接受服务条款
 
-选择 "Use WSL 2 based engine"（推荐）
+- 选择 "Use WSL 2 based engine"（推荐）
 
-配置 WSL 集成：
+- 配置 WSL 集成：
 
-text
+```
 [x] Enable integration with my default WSL distro
 [x] Ubuntu (或你安装的其他 WSL 发行版)
-2. 验证安装
-powershell
+```
+## 2. 验证安装
+```
 # 打开 PowerShell 或 CMD
 docker --version
 # Docker version 24.0.6, build ed223bc
@@ -99,8 +104,9 @@ docker run hello-world
 
 # 查看 Docker 信息
 docker info
-3. WSL 2 后端配置
-powershell
+```
+## 3. WSL 2 后端配置
+```
 # 查看 WSL 状态
 wsl -l -v
 # 应该显示：
@@ -114,8 +120,9 @@ wsl --set-version Ubuntu 2
 
 # 设置默认发行版
 wsl --set-default Ubuntu
-四、Docker Desktop 设置优化
-1. 资源分配
+```
+# 四、Docker Desktop 设置优化
+## 1. 资源分配
 打开 Docker Desktop → Settings → Resources：
 
 CPU：建议分配 4-8 核（根据你的 CPU 核心数）
@@ -126,8 +133,8 @@ Swap：1-2 GB
 
 Disk image size：至少 50 GB
 
-2. Docker Engine 配置
-json
+## 2. Docker Engine 配置
+```
 // Settings → Docker Engine
 {
   "registry-mirrors": [
@@ -147,16 +154,17 @@ json
     }
   }
 }
-3. WSL 2 设置
-Enable integration with additional WSL 2 distros：选择要集成的发行版
+```
+## 3. WSL 2 设置
+- Enable integration with additional WSL 2 distros：选择要集成的发行版
 
-Start Docker Desktop when you log in：根据需要开启
+- Start Docker Desktop when you log in：根据需要开启
 
-Expose daemon on tcp://localhost:2375 without TLS：不建议开启
+- Expose daemon on tcp://localhost:2375 without TLS：不建议开启
 
-五、常用命令与操作
+# 五、常用命令与操作
 基础命令
-powershell
+```
 # 镜像操作
 docker images                    # 查看镜像
 docker pull ubuntu:latest        # 拉取镜像
@@ -172,8 +180,9 @@ docker rm <container_id>        # 删除容器
 
 # 清理
 docker system prune -a           # 清理所有未使用的资源
+```
 Windows 特有命令
-powershell
+```
 # WSL 与 Docker 交互
 wsl --shutdown                   # 关闭所有 WSL 发行版
 wsl -d docker-desktop           # 进入 docker-desktop WSL
@@ -182,17 +191,19 @@ wsl -d docker-desktop-data      # 进入数据卷 WSL
 # 重启 Docker 服务
 net stop com.docker.service
 net start com.docker.service
-六、开发环境配置
-1. 项目结构示例
-text
+```
+# 六、开发环境配置
+## 1. 项目结构示例
+```
 my-project/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── .dockerignore
 ├── src/
 └── data/
-2. 简单 Dockerfile 示例
-dockerfile
+```
+## 2. 简单 Dockerfile 示例
+```
 # 基础镜像
 FROM python:3.11-slim
 
@@ -213,7 +224,9 @@ EXPOSE 8000
 
 # 启动命令
 CMD ["python", "app.py"]
-3. Docker Compose 示例
+```
+## 3. Docker Compose 示例
+```
 yaml
 version: '3.8'
 services:
@@ -237,9 +250,10 @@ services:
 
 volumes:
   postgres_data:
-七、常见问题解决
-1. Docker 启动失败
-powershell
+```
+# 七、常见问题解决
+## 1. Docker 启动失败
+```
 # 1. 检查 WSL 2 是否正常
 wsl --status
 
@@ -248,8 +262,9 @@ Docker Desktop → Troubleshoot → Reset to factory defaults
 
 # 3. 重新安装 WSL 2 内核
 # 下载：https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
-2. 网络问题
-powershell
+```
+## 2. 网络问题
+```
 # 查看 Docker 网络
 docker network ls
 
@@ -260,36 +275,42 @@ docker network create my-network
 {
   "dns": ["8.8.8.8", "114.114.114.114"]
 }
-3. 磁盘空间不足
-powershell
+```
+## 3. 磁盘空间不足
+```
 # 清理 Docker 数据
 docker system prune --all --volumes
 
 # 或通过 Docker Desktop
 Settings → Resources → Advanced → Disk image location
 # 可以移动到更大的磁盘
-4. 权限问题
-powershell
+```
+## 4. 权限问题
+```
 # 以管理员运行 Docker Desktop
 # 或在 PowerShell 中：
 net localgroup docker-users "你的用户名" /add
-5. 端口被占用
-powershell
+```
+## 5. 端口被占用
+```
 # 查看端口占用
 netstat -ano | findstr :端口号
 
 # 停止占用进程
 taskkill /PID 进程号 /F
-八、性能优化建议
-1. 文件系统性能
-dockerfile
+```
+# 八、性能优化建议
+## 1. 文件系统性能
+```
 # 在 Dockerfile 中使用 .dockerignore
 # .dockerignore 文件内容：
 .git
 node_modules
 *.log
 *.tmp
-2. 卷映射优化
+```
+## 2. 卷映射优化
+```
 yaml
 # docker-compose.yml
 version: '3.8'
@@ -303,18 +324,21 @@ services:
       
 volumes:
   app_data:
-3. WSL 2 性能优化
+```
+## 3. WSL 2 性能优化
 创建 %UserProfile%\.wslconfig：
 
+```
 ini
 [wsl2]
 memory=8GB        # 限制内存使用
 processors=4      # 分配 CPU 核心
 swap=2GB          # 交换空间
 localhostForwarding=true
-九、GUI 应用支持
-1. 运行 GUI 应用
-dockerfile
+```
+# 九、GUI 应用支持
+## 1. 运行 GUI 应用
+```
 # Dockerfile 示例（运行 Firefox）
 FROM ubuntu:22.04
 
@@ -322,33 +346,36 @@ RUN apt update && apt install -y firefox
 
 # 允许连接到主机 X11 服务器
 ENV DISPLAY=host.docker.internal:0
-2. 安装 Windows 的 X 服务器
-安装 VcXsrv 或 XMing
+```
+## 2. 安装 Windows 的 X 服务器
+- 安装 VcXsrv 或 XMing
 
-启动 XLaunch，选择 "Disable access control"
+- 启动 XLaunch，选择 "Disable access control"
 
 在 WSL 中设置：
-
+```
 bash
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-十、常用工具扩展
-1. 安装 Docker 扩展
-powershell
+```
+# 十、常用工具扩展
+## 1. 安装 Docker 扩展
+```
 # 安装 dive（查看镜像层）
 docker run --rm -it wagoodman/dive:latest
 
 # 安装 lazydocker（TUI 管理工具）
 docker run --rm -it lazyteam/lazydocker
-2. VS Code 集成
-安装 Docker 和 Dev Containers 扩展
+```
+## 2. VS Code 集成
+- 安装 Docker 和 Dev Containers 扩展
 
-在项目根目录创建 .devcontainer/devcontainer.json
+- 在项目根目录创建 .devcontainer/devcontainer.json
 
-按 F1 → Reopen in Container
+- 按 F1 → Reopen in Container
 
-十一、备份与迁移
-1. 导出/导入镜像
-powershell
+# 十一、备份与迁移
+## 1. 导出/导入镜像
+```
 # 导出镜像
 docker save -o myimage.tar myimage:tag
 
@@ -358,13 +385,16 @@ docker load -i myimage.tar
 # 导出容器
 docker export -o mycontainer.tar container_id
 docker import mycontainer.tar
-2. 备份 Docker 数据
+```
+## 2. 备份 Docker 数据
+```
 powershell
 # 备份所有镜像
 docker save $(docker images -q) -o all_images.tar
 
 # 备份卷数据
 docker run --rm -v my_volume:/data -v $(pwd):/backup ubuntu tar czf /backup/backup.tar.gz /data
+```
 快速检查清单
 虚拟化已启用
 
