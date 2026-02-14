@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on 我的空间</title><link>https://changxiangyu.cn/tags/docker/</link><description>Recent content in Docker on 我的空间</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Jan 2026 10:50:00 +0800</lastBuildDate><atom:link href="https://changxiangyu.cn/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 11 上配置 Docker</title><link>https://changxiangyu.cn/p/windows-11-%E4%B8%8A%E9%85%8D%E7%BD%AE-docker/</link><pubDate>Tue, 20 Jan 2026 10:50:00 +0800</pubDate><guid>https://changxiangyu.cn/p/windows-11-%E4%B8%8A%E9%85%8D%E7%BD%AE-docker/</guid><description>&lt;h1 id="一系统要求与准备">一、系统要求与准备&lt;/h1>
+&lt;h2 id="1-系统要求">1. 系统要求&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>操作系统&lt;/strong>：Windows 11 64 位（家庭版 / 专业版 / 企业版）&lt;/li>
+&lt;li>&lt;strong>虚拟化&lt;/strong>：必须启用硬件虚拟化（BIOS/UEFI 中开启 Intel VT-x / AMD-V）&lt;/li>
+&lt;li>&lt;strong>WSL 2 要求&lt;/strong>：Windows 10 版本 1903 或更高（Windows 11 已内置）&lt;/li>
+&lt;li>&lt;strong>内存&lt;/strong>：至少 4 GB（建议 8 GB 以上）&lt;/li>
+&lt;li>&lt;strong>存储空间&lt;/strong>：至少 20 GB 可用空间&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-检查虚拟化是否开启">2. 检查虚拟化是否开启&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 打开 PowerShell（管理员）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systeminfo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="或使用任务管理器查看">或使用任务管理器查看&lt;/h1>
+&lt;h1 id="ctrlshiftesc--性能--cpu--虚拟化-已启用">Ctrl+Shift+Esc → 性能 → CPU → &amp;ldquo;虚拟化: 已启用&amp;rdquo;&lt;/h1>
+&lt;p>如果未启用，需要重启进入 BIOS/UEFI 开启：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Intel CPU：开启 &lt;code>Intel Virtualization Technology (VT-x)&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>AMD CPU：开启 &lt;code>AMD-V&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="二安装-docker-desktop-for-windows">二、安装 Docker Desktop for Windows&lt;/h1>
+&lt;h2 id="方法1官方安装推荐">方法1：官方安装（推荐）&lt;/h2>
+&lt;p>下载 Docker Desktop&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 官方下载地址（最新稳定版）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>运行安装程序&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>双击安装文件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>勾选 &amp;ldquo;Use WSL 2 instead of Hyper-V&amp;rdquo;（推荐）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>安装完成后不要立即启动&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>启用 WSL 2 功能&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 以管理员身份打开 PowerShell
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 重启电脑
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">shutdown /r /t 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>设置 WSL 2 为默认版本&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">wsl --set-default-version 2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>方法2：使用 Winget 安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 搜索 Docker Desktop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">winget search Docker.Desktop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">winget install Docker.DockerDesktop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="三安装后的配置">三、安装后的配置&lt;/h1>
+&lt;h2 id="1-首次启动配置">1. 首次启动配置&lt;/h2>
+&lt;p>启动 Docker Desktop&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>接受服务条款&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>选择 &amp;ldquo;Use WSL 2 based engine&amp;rdquo;（推荐）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置 WSL 集成：&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[x] Enable integration with my default WSL distro
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[x] Ubuntu (或你安装的其他 WSL 发行版)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-验证安装">2. 验证安装&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 打开 PowerShell 或 CMD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Docker version 24.0.6, build ed223bc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Docker Compose version v2.21.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run hello-world
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 如果看到欢迎信息，说明安装成功
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看 Docker 信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker info
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="3-wsl-2-后端配置">3. WSL 2 后端配置&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看 WSL 状态
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl -l -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 应该显示：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># NAME STATE VERSION
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># * Ubuntu Running 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># docker-desktop-data Running 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># docker-desktop Running 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 如果版本不是2，升级：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --set-version Ubuntu 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置默认发行版
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --set-default Ubuntu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="四docker-desktop-设置优化">四、Docker Desktop 设置优化&lt;/h1>
+&lt;h2 id="1-资源分配">1. 资源分配&lt;/h2>
+&lt;p>打开 Docker Desktop → Settings → Resources：&lt;/p>
+&lt;p>CPU：建议分配 4-8 核（根据你的 CPU 核心数）&lt;/p>
+&lt;p>Memory：建议分配 4-8 GB（不要超过总内存的50%）&lt;/p>
+&lt;p>Swap：1-2 GB&lt;/p>
+&lt;p>Disk image size：至少 50 GB&lt;/p>
+&lt;h2 id="2-docker-engine-配置">2. Docker Engine 配置&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">// Settings → Docker Engine
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;registry-mirrors&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;https://hub-mirror.c.163.com&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ],
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;insecure-registries&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;debug&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;experimental&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;features&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;buildkit&amp;#34;: true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> },
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;builder&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;gc&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;enabled&amp;#34;: true,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;defaultKeepStorage&amp;#34;: &amp;#34;10GB&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="3-wsl-2-设置">3. WSL 2 设置&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>Enable integration with additional WSL 2 distros：选择要集成的发行版&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Start Docker Desktop when you log in：根据需要开启&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Expose daemon on tcp://localhost:2375 without TLS：不建议开启&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="五常用命令与操作">五、常用命令与操作&lt;/h1>
+&lt;p>基础命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 镜像操作
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker images # 查看镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker pull ubuntu:latest # 拉取镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi &amp;lt;image_id&amp;gt; # 删除镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 容器操作
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker ps # 查看运行中的容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker ps -a # 查看所有容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -it ubuntu bash # 运行交互式容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker start &amp;lt;container_id&amp;gt; # 启动容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop &amp;lt;container_id&amp;gt; # 停止容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm &amp;lt;container_id&amp;gt; # 删除容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 清理
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system prune -a # 清理所有未使用的资源
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Windows 特有命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># WSL 与 Docker 交互
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --shutdown # 关闭所有 WSL 发行版
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl -d docker-desktop # 进入 docker-desktop WSL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl -d docker-desktop-data # 进入数据卷 WSL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 重启 Docker 服务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net stop com.docker.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net start com.docker.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="六开发环境配置">六、开发环境配置&lt;/h1>
+&lt;h2 id="1-项目结构示例">1. 项目结构示例&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">my-project/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── docker-compose.yml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Dockerfile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── .dockerignore
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── src/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── data/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-简单-dockerfile-示例">2. 简单 Dockerfile 示例&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 基础镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM python:3.11-slim
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置工作目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WORKDIR /app
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 复制依赖文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY requirements.txt .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装依赖
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN pip install --no-cache-dir -r requirements.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 复制源代码
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY . .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 暴露端口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EXPOSE 8000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 启动命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CMD [&amp;#34;python&amp;#34;, &amp;#34;app.py&amp;#34;]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="3-docker-compose-示例">3. Docker Compose 示例&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">yaml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">version: &amp;#39;3.8&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">services:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> web:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> build: .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ports:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#34;8000:8000&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ./src:/app/src
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - DEBUG=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> depends_on:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> db:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: postgres:15
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> POSTGRES_PASSWORD: example
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - postgres_data:/var/lib/postgresql/data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> postgres_data:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="七常见问题解决">七、常见问题解决&lt;/h1>
+&lt;h2 id="1-docker-启动失败">1. Docker 启动失败&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 1. 检查 WSL 2 是否正常
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 2. 重置 Docker
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Docker Desktop → Troubleshoot → Reset to factory defaults
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 3. 重新安装 WSL 2 内核
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下载：https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-网络问题">2. 网络问题&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看 Docker 网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker network ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建自定义网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker network create my-network
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置 DNS（在 Docker Desktop Settings → Docker Engine）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#34;dns&amp;#34;: [&amp;#34;8.8.8.8&amp;#34;, &amp;#34;114.114.114.114&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="3-磁盘空间不足">3. 磁盘空间不足&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 清理 Docker 数据
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system prune --all --volumes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 或通过 Docker Desktop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Settings → Resources → Advanced → Disk image location
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 可以移动到更大的磁盘
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="4-权限问题">4. 权限问题&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 以管理员运行 Docker Desktop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 或在 PowerShell 中：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net localgroup docker-users &amp;#34;你的用户名&amp;#34; /add
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="5-端口被占用">5. 端口被占用&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看端口占用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">netstat -ano | findstr :端口号
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 停止占用进程
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">taskkill /PID 进程号 /F
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="八性能优化建议">八、性能优化建议&lt;/h1>
+&lt;h2 id="1-文件系统性能">1. 文件系统性能&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 在 Dockerfile 中使用 .dockerignore
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># .dockerignore 文件内容：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">node_modules
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*.log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*.tmp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-卷映射优化">2. 卷映射优化&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">yaml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># docker-compose.yml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">version: &amp;#39;3.8&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">services:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> app:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 使用命名卷（性能更好）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - app_data:/data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 特定文件映射（避免整个目录）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ./config:/app/config:ro # 只读
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> app_data:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="3-wsl-2-性能优化">3. WSL 2 性能优化&lt;/h2>
+&lt;p>创建 %UserProfile%.wslconfig：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[wsl2]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">memory=8GB # 限制内存使用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">processors=4 # 分配 CPU 核心
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">swap=2GB # 交换空间
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">localhostForwarding=true
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="九gui-应用支持">九、GUI 应用支持&lt;/h1>
+&lt;h2 id="1-运行-gui-应用">1. 运行 GUI 应用&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># Dockerfile 示例（运行 Firefox）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM ubuntu:22.04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN apt update &amp;amp;&amp;amp; apt install -y firefox
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 允许连接到主机 X11 服务器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ENV DISPLAY=host.docker.internal:0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-安装-windows-的-x-服务器">2. 安装 Windows 的 X 服务器&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>安装 VcXsrv 或 XMing&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>启动 XLaunch，选择 &amp;ldquo;Disable access control&amp;rdquo;&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>在 WSL 中设置：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk &amp;#39;{print $2}&amp;#39;):0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="十常用工具扩展">十、常用工具扩展&lt;/h1>
+&lt;h2 id="1-安装-docker-扩展">1. 安装 Docker 扩展&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 安装 dive（查看镜像层）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run --rm -it wagoodman/dive:latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装 lazydocker（TUI 管理工具）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run --rm -it lazyteam/lazydocker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-vs-code-集成">2. VS Code 集成&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>安装 Docker 和 Dev Containers 扩展&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在项目根目录创建 .devcontainer/devcontainer.json&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>按 F1 → Reopen in Container&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="十一备份与迁移">十一、备份与迁移&lt;/h1>
+&lt;h2 id="1-导出导入镜像">1. 导出/导入镜像&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 导出镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker save -o myimage.tar myimage:tag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 导入镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker load -i myimage.tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 导出容器
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker export -o mycontainer.tar container_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker import mycontainer.tar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-备份-docker-数据">2. 备份 Docker 数据&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">powershell
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 备份所有镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker save $(docker images -q) -o all_images.tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 备份卷数据
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run --rm -v my_volume:/data -v $(pwd):/backup ubuntu tar czf /backup/backup.tar.gz /data
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>快速检查清单
+虚拟化已启用&lt;/p>
+&lt;p>WSL 2 已安装并设为默认&lt;/p>
+&lt;p>Docker Desktop 使用 WSL 2 后端&lt;/p>
+&lt;p>资源分配合理（内存/CPU/磁盘）&lt;/p>
+&lt;p>配置了国内镜像加速器&lt;/p>
+&lt;p>防火墙允许 Docker 通信&lt;/p></description></item><item><title>Docker容器占用大量存储</title><link>https://changxiangyu.cn/p/docker%E5%AE%B9%E5%99%A8%E5%8D%A0%E7%94%A8%E5%A4%A7%E9%87%8F%E5%AD%98%E5%82%A8/</link><pubDate>Tue, 17 Jan 2023 11:02:00 +0800</pubDate><guid>https://changxiangyu.cn/p/docker%E5%AE%B9%E5%99%A8%E5%8D%A0%E7%94%A8%E5%A4%A7%E9%87%8F%E5%AD%98%E5%82%A8/</guid><description>&lt;p>服务产生大量core文件，导致存储空间被占满
+可通过命令&lt;code>find /home/docker -name core.*&lt;/code>查看产生core文件的路径（docker数据目录以现场配置为准）&lt;/p>
+&lt;ol>
+&lt;li>删除所有容器，包含base和c3目录下的
+&lt;code>docker-compose down&lt;/code>&lt;/li>
+&lt;li>使用df -h检查空间是否已经恢复&lt;/li>
+&lt;li>修改&lt;code>docker-compose.yml&lt;/code>,在每个服务的最后增加以下配置：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> ulimits:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> core: 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://changxiangyu.cn/images/web/docker-1.png"
+loading="lazy"
+>
+5. 启动docker容器
+&lt;code>docker-compose up -d&lt;/code>&lt;/p></description></item></channel></rss>
